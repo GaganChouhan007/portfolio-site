@@ -1,1 +1,113 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Congratulations Component</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f14;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .congrats-card {
+      background: linear-gradient(135deg, #f9c74f, #f94144, #577590, #43aa8b);
+      padding: 2px;
+      border-radius: 20px;
+      animation: glow 3s infinite linear;
+    }
+
+    .congrats-inner {
+      background: #111;
+      border-radius: 18px;
+      padding: 40px 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .congrats-inner h1 {
+      font-size: 42px;
+      margin: 0 0 10px;
+      background: linear-gradient(90deg, #f9c74f, #f94144, #43aa8b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .congrats-inner p {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .congrats-inner button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #f9c74f, #f94144);
+      color: #000;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .congrats-inner button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(249, 199, 79, 0.4);
+    }
+
+    @keyframes glow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    /* confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background: red;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="congrats-card">
+    <div class="congrats-inner">
+      <h1>Congratulations 🎉</h1>
+      <p>Aapne successfully task complete kar liya hai</p>
+      <button onclick="launchConfetti()">Celebrate</button>
+    </div>
+  </div>
+
+  <script>
+    function launchConfetti() {
+      for (let i = 0; i < 40; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
