@@ -95,18 +95,29 @@
   </div>
 
   <script>
-    function launchConfetti() {
-      for (let i = 0; i < 40; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        document.body.appendChild(confetti);
+function launchConfetti() {
+  for (let i = 0; i < 40; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
 
-        setTimeout(() => confetti.remove(), 4000);
-      }
-    }
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 4000);
+  }
+}
+
+// 🔥 AUTO RUN (no click)
+window.addEventListener("load", () => {
+  launchConfetti();
+  setTimeout(launchConfetti, 1200);
+});
+
   </script>
 
 </body>
